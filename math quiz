@@ -1,0 +1,201 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int multiplication(int,int);
+int addition (int,int);
+int subtraction(int,int);
+int division(int,int);
+
+int main()
+{
+	char response,a,b,c,d;
+	int N;
+	int max;
+	srand(time(0));
+	cout << "Enter number of questions you would like?" << endl;
+	cin >> N;
+	cout << "\nEnter maximum range of the numbers you would like to work with" << endl;
+	cin >> max;
+	cout << "\nWhat kind of math problems would you like?" << endl;
+	cout << "a. addition" << endl;
+	cout << "b. subraction" << endl;
+	cout << "c. multiplication" << endl;
+	cout << "d. divison" << endl;
+	cin >> response;
+	cout << endl;
+
+	switch (response)
+	{
+		case 'a':
+		addition(N,max);
+		break;
+
+		case 'b':
+		subtraction(N,max);
+		break;
+
+		case 'c':
+		multiplication(N,max);
+		break;
+
+		case 'd':
+		division(N,max);
+		break;
+	}
+
+	return 0;
+}
+
+int multiplication (int N, int max)
+{
+	int x,y,F;
+	int z;
+	int correctCount = 0;
+	int incorrectCount = 0;
+
+	for (int i=1; i<N ;i++)
+	{
+		x=rand()%(max+1);
+		y=rand()%(max+1);
+		F=x * y;
+
+		cout << "what is " << x << "x" << y << " = ";
+		cin >> z;
+		if (z==F)
+		{
+			cout << "correct" << endl;
+			correctCount++;
+		}
+			else
+			{
+				cout << "incorrect" << endl;
+				incorrectCount++;
+			}
+	
+		cout << "You got " << correctCount << " right" << endl;
+		cout << "You got " << incorrectCount << " wrong\n" << endl;
+	
+	}
+
+	return 0;
+}
+
+int addition(int N, int max)
+{
+	int correctCount = 0;
+	int incorrectCount = 0;
+	int x,y,F;
+	int z;
+
+	for (int i=1; i<N; i++)
+		{	
+			x = (1+rand()%(max+1));
+			y = (1+rand()%(max+1));
+			F=x+y;
+			cout << x <<" + " << y << " = ";
+			cin >> z;
+			
+
+			if (z==F)
+				{
+					cout << "correct" << endl;
+					correctCount++;
+				}
+						else
+							{
+								cout << "incorrect" << endl;
+								incorrectCount++;
+							}
+		
+	
+		}
+
+	
+	cout << "You got " << correctCount << " right" << endl;
+	cout << "You got " << incorrectCount << " wrong\n" << endl;
+
+	return 0;
+	
+}
+
+int subtraction (int N, int max)
+{
+	int answer;
+	int correctCount = 0;
+	int incorrectCount = 0;
+
+	for (int i=1; i<N; i++)
+	{
+		int x = (1+rand()%(max+1));
+		int y = (1+rand()%(max+1));
+				
+		cout << x << " - " << y << " = ";
+		cin >> answer;
+
+		if (answer== x-y)
+		{
+			cout << "correct" << endl;
+			correctCount++;
+			
+		}
+						else
+							{
+								cout << "incorrect" << endl;
+								incorrectCount++;
+								
+							}
+	}
+
+	
+
+	cout << "You got " << correctCount << " right" << endl;
+	cout << "You got " << incorrectCount << " wrong\n" << endl;
+
+	return 0;
+}
+
+int division (int N, int max)
+{
+	int x,y;
+	int correctCount = 0;
+	int incorrectCount = 0;
+	int z;
+	int quotient;
+	int answer;
+
+	for (int i=1; i<N; i++)
+	{
+		int x = (1+rand()%(max+1));
+		int y = (1+rand()%(max+1));
+		z=x*y;
+		quotient=z/x;
+
+		cout << z << " / " << x << " = ";
+		cin >> answer;
+
+		if (quotient == answer)
+		{
+			cout << "correct" << endl;
+			correctCount++;
+			
+		}
+					else
+							{
+								cout << "incorrect" << endl;
+								incorrectCount++;
+								
+							}
+	
+	
+	}
+
+	cout << "You got " << correctCount << " right" << endl;
+	cout << "You got " << incorrectCount << " wrong\n" << endl;
+
+	return 0;
+}
+	
+
