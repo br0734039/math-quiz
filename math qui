@@ -75,10 +75,9 @@ int multiplication (int N, int max)
 				incorrectCount++;
 			}
 	
-		cout << "You got " << correctCount << " right" << endl;
-		cout << "You got " << incorrectCount << " wrong\n" << endl;
-	
 	}
+	cout << "You got " << correctCount << " right" << endl;
+	cout << "You got " << incorrectCount << " wrong\n" << endl;
 
 	return 0;
 }
