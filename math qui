@@ -74,7 +74,7 @@ int multiplication (int N, int max)
 				cout << "incorrect" << endl;
 				incorrectCount++;
 			}
-	
+
 	}
 	cout << "You got " << correctCount << " right" << endl;
 	cout << "You got " << incorrectCount << " wrong\n" << endl;
@@ -90,13 +90,13 @@ int addition(int N, int max)
 	int z;
 
 	for (int i=1; i<=N; i++)
-		{	
+		{
 			x = (1+rand()%(max+1));
 			y = (1+rand()%(max+1));
 			F=x+y;
 			cout << x <<" + " << y << " = ";
 			cin >> z;
-			
+
 
 			if (z==F)
 				{
@@ -108,17 +108,17 @@ int addition(int N, int max)
 								cout << "incorrect" << endl;
 								incorrectCount++;
 							}
-		
-	
+
+
 		}
 
-	
+
 	cout << "You got " << correctCount << " right" << endl;
 	cout << "You got " << incorrectCount << " wrong\n" << endl;
-	
+
 
 	return 0;
-	
+
 }
 
 int subtraction (int N, int max)
@@ -131,25 +131,32 @@ int subtraction (int N, int max)
 	{
 		int x = (1+rand()%(max+1));
 		int y = (1+rand()%(max+1));
-				
-		cout << x << " - " << y << " = ";
-		cin >> answer;
+        if (x>y)
+        {
+            cout << x << " - " << y << " = ";
+            cin >> answer;
+        }
+        else
+        {
+            cout << y << " - " << x << " = ";
+            cin >> answer;
+        }
 
-		if (answer== x-y)
+		if (answer== abs(x-y))
 		{
 			cout << "correct" << endl;
 			correctCount++;
-			
+
 		}
 						else
 							{
 								cout << "incorrect" << endl;
 								incorrectCount++;
-								
+
 							}
 	}
 
-	
+
 
 	cout << "You got " << correctCount << " right" << endl;
 	cout << "You got " << incorrectCount << " wrong\n" << endl;
@@ -180,22 +187,21 @@ int division (int N, int max)
 		{
 			cout << "correct" << endl;
 			correctCount++;
-			
+
 		}
 					else
 							{
 								cout << "incorrect" << endl;
 								incorrectCount++;
-								
+
 							}
-	
-	
+
+
 	}
 
 	cout << "You got " << correctCount << " right" << endl;
 	cout << "You got " << incorrectCount << " wrong\n" << endl;
-	
+
 
 	return 0;
 }
-
