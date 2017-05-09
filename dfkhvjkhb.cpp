@@ -77,8 +77,8 @@ int multiplication (int N, int max)
 
 	for (int i=1; i<=N ;i++)
 	{
-		x=rand()%(max);
-		y=rand()%(max);
+		x=1rand()%(max+1);
+		y=1rand()%(max+1);
 		F=x * y;
 
 		cout << "what is " << x << "x" << y << " = ";
