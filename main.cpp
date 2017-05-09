@@ -1,3 +1,8 @@
+// math quiz
+// Brett Rohde, Richard Tobing, Brian Canales
+
+/* hello world for our final project, we made a math quiz in which the user can determine the number of questions, the type operation for each question, and the range of numbers which each problem will consist of*/
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -8,9 +13,10 @@ int multiplication(int,int);
 int addition (int,int);
 int subtraction(int,int);
 int division(int,int);
-int mountain(int, int);
+int mountain (double, double);
 
-int main()
+int main()/* the main function defines each variable we use and asks the user for the number of questions they want, the range, and the type of operation they will use, the program then uses a switch statement, and calls
+one of four funcions based on the operation chosen by the user; these inculde, addition, subtraction, multiplycation, and division*/
 {
 	int correctCount;
 	double rowCount;
@@ -58,44 +64,11 @@ int main()
 	return 0;
 }
 
-int addition(int N, int max)
-{
-	int correctCount = 0;
-	int incorrectCount = 0;
-	int x,y,F;
-	int z;
-
-	for (int i=1; i<=N; i++)
-		{
-			x = (1+rand()%(max+1));
-			y = (1+rand()%(max+1));
-			F=x+y;
-			cout << x <<" + " << y << " = ";
-			cin >> z;
-
-
-			if (z==F)
-				{
-					cout << "correct" << endl;
-					correctCount++;
-				}
-						else
-							{
-								cout << "incorrect" << endl;
-								incorrectCount++;
-							}
-
-
-		}
-
-
-	cout << "You got " << correctCount << " right" << endl;
-	cout << "You got " << incorrectCount << " wrong\n" << endl;
-
-
-	return correctCount;
-
-}
+/* for our addition and multiplication are prett much identical fnctions; for example in our multiplication funcion, we are inputting our number questions, N, and our range of numbers max.
+We use a loop that runs however
+many problems the user wants. Within the loop, we have two random number generators that will initialize two variables that will not exceed your chosen range.
+It compares the user's input z, to the actual answer F which
+is calculated by the program. An if statement will test to see if the answer is correct and increment a counter if your answer is correct */
 
 int multiplication (int N, int max)
 {
@@ -130,8 +103,48 @@ int multiplication (int N, int max)
 	return correctCount;
 }
 
+int addition(int N, int max)
+{
+	int correctCount = 0;
+	int incorrectCount = 0;
+	int x,y,F;
+	int z;
+
+	for (int i=1; i<=N; i++)
+		{
+			x = (1+rand()%max);
+			y = (1+rand()%max);
+			F=x+y;
+			cout << x <<" + " << y << " = ";
+			cin >> z;
 
 
+			if (z==F)
+				{
+					cout << "correct" << endl;
+					correctCount++;
+				}
+						else
+							{
+								cout << "incorrect" << endl;
+								incorrectCount++;
+							}
+
+
+		}
+
+
+	cout << "You got " << correctCount << " right" << endl;
+	cout << "You got " << incorrectCount << " wrong\n" << endl;
+
+
+	return correctCount;
+
+}
+
+/* in our subtraction, we add one to our randomly generated number so we wont divide by zero, in order to prvent a negative answer, we created an if statment to display the greater number first. In order to keep the keep
+the random number below maximum, we used a modulus operator to get the remainder of the random number divided by the chosen maximum, we use this remainder for each operation instead of the initial random number
+for instance, if our chosen max is 20, and the the random number is 42, the number used for operation will be the remainder of 42/20+ 1, which is 3*/
 int subtraction (int N, int max)
 {
 	int answer;
@@ -140,13 +153,20 @@ int subtraction (int N, int max)
 
 	for (int i=1; i<=N; i++)
 	{
-		int x = (1+rand()%(max+1));
-		int y = (1+rand()%(max+1));
+		int x = (1+rand()%max);
+		int y = (1+rand()%max);
+        if (x>y)
+        {
+            cout << x << " - " << y << " = ";
+            cin >> answer;
+        }
+        else
+        {
+            cout << y << " - " << x << " = ";
+            cin >> answer;
+        }
 
-		cout << x << " - " << y << " = ";
-		cin >> answer;
-
-		if (answer== x-y)
+		if (answer== abs(x-y))
 		{
 			cout << "correct" << endl;
 			correctCount++;
@@ -168,6 +188,8 @@ int subtraction (int N, int max)
 	return correctCount;
 }
 
+/* in our our division function, we need to make sure that we dont end up with a remainder or a decimal answer, in order to do this, find the product of two non-zero random numbers and ask the user for the
+quotient of that product divided one of the two random numbers, so technically our chosen maximum will limit our answer*/
 int division (int N, int max)
 {
 	int x,y;
@@ -179,8 +201,8 @@ int division (int N, int max)
 
 	for (int i=1; i<=N; i++)
 	{
-		int x = (1+rand()%(max+1));
-		int y = (1+rand()%(max+1));
+		int x = (1+rand()%max);
+		int y = (1+rand()%max);
 		z=x*y;
 		quotient=z/x;
 
@@ -191,13 +213,11 @@ int division (int N, int max)
 		{
 			cout << "correct" << endl;
 			correctCount++;
-
 		}
 					else
 							{
 								cout << "incorrect" << endl;
 								incorrectCount++;
-
 							}
 
 
@@ -210,19 +230,22 @@ int division (int N, int max)
 	return correctCount;
 }
 
-int mountain (int rowCount, int N)
+/* this function generates scenery, the mountain in the scene is based on your score in the quiz, for example, getting 75% will create a mountain thats 75 rows high. It does this by converting your
+score into a percentage of the total number of questions, the percentage is then coverted into  counter that determines the number of rows high the mountain will be. We have a loop that repeats as
+many times as the counter allows it, for each iteration of the loop we have two nested loops, one to output a certain number of empty spaces, and another to output a number of asterisks. the first
+instance of the loop outputs a row thats mostly empty spaces and only one asterisk, every consecutive row after that outputs one less empty space and one more asterisk until the number of rows
+outputed equals the your score percentage for the quiz.  */
+int mountain (double rowCount, double N)
 {
+
     double percent= (rowCount/N) *100.0 ;
 
-    cout<< rowCount<< endl;
-    cout<< N<< endl;
-    cout<< percent<< endl;
+    cout<< "SCORE: "<< percent << "%"<< endl;
 
 	int rows=  percent; // this is the number of rows (based on quiz score) and also the pyramid's height
-	int rowmod= 2*rows - 1;// a modification of rows that equates to half of the pyramid length minus the central piece
+    int rowmod= 2*rows - 1;// a modification of rows that equates to half of the pyramid length minus the central piece
    int space;
    int counter= 0;
-   int asterisk= 0;
    int decrement= 0;
 
    cout<<"                                                  |        "<< endl;
@@ -246,8 +269,7 @@ int mountain (int rowCount, int N)
 		cout<<"  ";
 		space++;
 	   }
-	   unsigned int scoreCount= counter-10;
-	   cout<<counter+1;
+	   cout<<counter+1<<"%";
 	   int decprox= decrement;
 	   while(decprox>= 0)
 	   {
